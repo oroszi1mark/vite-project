@@ -12,6 +12,10 @@ module.exports = {
     "jsx-a11y",
     "import",
     "unicorn",
+    "jest",
+    "jest-formatting",
+    "no-only-tests",
+    "testing-library",
   ],
   extends: [
     "eslint:recommended",
@@ -23,6 +27,9 @@ module.exports = {
     "plugin:react-hooks/recommended",
     "plugin:styled-components-a11y/recommended",
     "plugin:jsx-a11y/recommended",
+    "plugin:jest/recommended",
+    "plugin:jest-formatting/recommended",
+    "plugin:testing-library/react",
   ],
   settings: {
     "import/parsers": {
@@ -37,6 +44,7 @@ module.exports = {
   },
   rules: {
     "prettier/prettier": "warn",
+    "no-only-tests/no-only-tests": ["error", { fix: true }],
     "no-unused-vars": "error",
     "react/boolean-prop-naming": [
       "error",
