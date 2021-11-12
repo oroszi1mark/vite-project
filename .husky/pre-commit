@@ -1,0 +1,2 @@
+yarn checkTs
+yarn lint-staged
