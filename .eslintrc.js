@@ -5,6 +5,10 @@ module.exports = {
   },
   root: true,
   parser: "@typescript-eslint/parser",
+  parserOptions: {
+    tsConfigRootDir: __dirname,
+    project: ["./tsconfig.json"],
+  },
   plugins: [
     "prettier",
     "@typescript-eslint",
@@ -24,6 +28,7 @@ module.exports = {
     "plugin:import/recommended",
     "plugin:import/typescript",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime", // Don't require React in scope for React 17
     "plugin:react-hooks/recommended",
     "plugin:styled-components-a11y/recommended",
     "plugin:jsx-a11y/recommended",
@@ -41,10 +46,14 @@ module.exports = {
         project: ".",
       },
     },
+    react: {
+      version: "detect",
+    },
   },
   rules: {
     "prettier/prettier": "warn",
     "no-only-tests/no-only-tests": ["error", { fix: true }],
+    "no-unreachable": "error",
     "no-unused-vars": "error",
     "react/boolean-prop-naming": [
       "error",
@@ -54,21 +63,18 @@ module.exports = {
     "react/default-props-match-prop-types": "warn",
     "react/no-unused-prop-types": "warn",
     "react/require-default-props": "warn",
-  },
-  // Turn off rule for importing React for JSX from React 17
-  configs: {
-    "jsx-runtime": {
-      plugins: "react",
-    },
-    parserOptions: {
-      ecmaFeatures: {
-        jsx: true,
+    //#region Imported from CRA
+    "react/require-render-return": "error",
+    "react/style-prop-object": "warn",
+    //#endregion
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        selector: "variable",
+        types: ["boolean"],
+        format: ["PascalCase"],
+        prefix: ["is", "should", "has", "can", "did", "will"],
       },
-      jsxPragma: null,
-    },
-    rules: {
-      "react/react-in-jsx-scope": 0,
-      "react/jsx-uses-react": 0,
-    },
+    ],
   },
 };
