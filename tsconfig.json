@@ -14,7 +14,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    //#region Config for VS Code to understand '@/' root imports
+    // https://stackoverflow.com/a/64511851
+    "baseUrl": ".",
+    "paths": {
+        "@/*": [
+          "src/*"
+        ]
+    },
+    //#endregion
   },
   "include": ["./src"],
 }
